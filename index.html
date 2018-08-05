@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1</title>
+    <script src="./jsdk.js" type="text/javascript"></script>
+    <script src="./removeFromNewsComments.js" type="text/javascript"></script>
+    <script src="./removeFromAnswersAll.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <h4>Что нужно знать прежде чем пользоваться</h4>
+    <ul>
+        <li>Утилита не удаляет товары, сами их удаляйте</li>
+        <li>Утилита не может зайти в "уведомления" (колокольчик) -> "показать все", оттуда тоже вручную</li>
+    </ul>
+</div>
+<div>
+    <h4>Как начать</h4>
+    <ol>
+        <li>Нажимаешь на "доступ 1"</li>
+        <li>Открывается окошко, все разрешаешь</li>
+        <li>Окошко переходит на другую страницу <a href="./ss.png" target="_blank">вот такую</a></li>
+        <li>Нужно скопировать в буфер обмена ИМЕННО то что я выделил, <b>начиная И НЕ ВКЛЮЧАЯ знак "="</b>, <b>заканчивая И НЕ ВКЛЮЧАЯ знак "&"</b></li>
+        <li>То что скопировалось надо вставить в поле "сохранить токен" и нажать кнопку</li>
+        <li>Все, после этого можно шпарить</li>
+        <li>Обновил страницу - получай токен заново</li>
+    </ol>
+</div>
+<div>
+    <button onclick="getCode()">Доступ 1</button>
+</div>
+<div>
+    <input type="text" id="token" title="a">
+    <button onclick="saveToken()">Сохранить токен></button>
+</div>
+<div>
+    <button onclick="removeFromNewsComments(document.getElementById('indicator'))">Удалить данные из "новости" -> "комментарии"</button>
+</div>
+<div>
+    <button onclick="removeFromAnswersAll(document.getElementById('indicator'))">Удалить данные из "ответы"</button>
+</div>
+<div>
+    <button onclick="removeAllLikes(document.getElementById('indicator'))">Удалить все лайки (дааа детка)</button>
+</div>
+<div id="indicator">
+Получите токен!
+</div>
+<h4>
+<pre>
+    Осталось удалить:
+    - все лайки
+    - все посты
+    - все фото
+    - все видео
+    - все заметки
+    - все сообщения
+    - всех друзей
+</pre>
+</h4>
+<script>
+
+    const v = '5.80';
+    const id = 6651709;
+    window.token = '16a7c96b4cefca2a1fe9370e960c126228df7434b2c26926f24c7db8dfbc3c72c04302d0d3c7b0e8215aa';
+    window.v = v;
+
+    function getCode() {
+        const scope = 'wall,docs,audio,video,friends,photos,notes,pages,messages,groups,email,notifications';
+        const url = `https://oauth.vk.com/authorize?client_id=${id}&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope=${scope}&response_type=token&v=${v}&state=123456`;
+        document.getElementById('indicator').innerText = 'Сохраните токен!';
+        let win = window.open(url, '_blank', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no');
+    }
+
+    function saveToken() {
+        window.token = document.getElementById('token').value;
+        document.getElementById('indicator').innerText = 'Все, можно шпарить!';
+    }
+</script>
+</body>
+</html>
