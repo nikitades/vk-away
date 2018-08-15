@@ -20,7 +20,7 @@ async function removeMessages(indicator) {
                 });
             } catch (e) {
                 if (e.error.error_code === 9) {
-                    localMsgInform('Короче нас забанило по флуд контролю, нужно запустить попозже');
+                    return localMsgInform('Короче нас забанило по флуд контролю, нужно запустить попозже');
                     break;
                 } else {
                     throw e;
