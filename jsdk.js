@@ -13,8 +13,17 @@ const helpers = {
     isGroup(id) {
         return id.toString()[0] === '-';
     },
-    getSleepTime() {
-        return (Math.random() * 400) + 300;
+    getSleepTime(length = null) {
+        let base = 300;
+        switch (length) {
+            case 'big':
+                base = 700;
+                break;
+            case 'small':
+                base = 150;
+                break;
+        }
+        return (Math.random() * 400) + base;
     },
     wait(time) {
         return new Promise(res => {
@@ -162,17 +171,32 @@ const remove = {
 
 let lastReqTime = 0;
 
-function req(method, params = {}, token = window.token, v = window.v) {
+function req(method, params = {}, token = window.token, v = window.v, timeout = null) {
     return new Promise(async (res, rej) => {
         const curTime = (new Date()).getTime();
-        if ((curTime - lastReqTime) > 50) await helpers.wait(helpers.getSleepTime());
+        if ((curTime - lastReqTime) > 50) await helpers.wait(helpers.getSleepTime(timeout));
         const callbackName = getCallbackName();
         cbScripts[callbackName] = document.createElement('script');
         params.access_token = token;
         params.v = v;
         params.callback = 'callbacks.' + callbackName;
-        callbacks[callbackName] = info => {
-            if (!('response' in info)) rej(info);
+        callbacks[callbackName] = async info => {
+            if (info.error && info.error.error_code === 14) {
+                const captchaText = await captchaMsg(info.error.captcha_img);
+                try {
+                    res(await req(method, {
+                        ...params,
+                        captcha_sid: info.error.captcha_sid,
+                        captcha_key: captchaText
+                    }, token, v));
+                } catch (e) {
+                    rej(e);
+                }
+            }
+            else if (!('response' in info)) {
+                console.error(info.error.error_msg);
+                rej(info);
+            }
             else res(info.response);
             setTimeout(document.head.removeChild.bind(document.head, cbScripts[callbackName]), 100000);
         };
@@ -184,6 +208,7 @@ function req(method, params = {}, token = window.token, v = window.v) {
             document.head.appendChild(cbScripts[callbackName]);
             cbScripts[callbackName].src = address;
         } catch (e) {
+            console.log(e.message || e);
             rej(e);
         }
     });
