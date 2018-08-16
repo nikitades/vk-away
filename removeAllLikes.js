@@ -1,4 +1,4 @@
-function heck(params) {
+async function heck(params) {
     let timeout = null;
     switch (params.type) {
         case 'photo':
@@ -6,7 +6,11 @@ function heck(params) {
             timeout = 'big';
             break;
     }
-    return req('likes.delete', params, undefined, undefined, timeout);
+    try {
+        return await req('likes.delete', params, undefined, undefined, timeout);
+    } catch (e) {
+        return Promise.resolve();
+    }
 }
 
 let localLikesInform;
