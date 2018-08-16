@@ -19,13 +19,10 @@
 </head>
 <body>
 <div class="container">
-    <div class="mt-3 row">
-        <div class="col">
-            <h1>Валим из контакта</h1>
-        </div>
-        <div class="col">
-            <img src="https://78.media.tumblr.com/025754612a0a01835ea4b8091453e5fb/tumblr_mp8c16mpOm1qlgn74o1_r2_500.gif" alt="">
-        </div>
+    <div class="mt-3">
+        <h1>Валим из контакта</h1>
+        <img src="https://78.media.tumblr.com/025754612a0a01835ea4b8091453e5fb/tumblr_mp8c16mpOm1qlgn74o1_r2_500.gif"
+             alt="">
     </div>
     <div class="mt-3">
         <h4>Что нужно знать прежде чем пользоваться</h4>
@@ -34,7 +31,9 @@
             <li>И к песням тоже доступ закрыт</li>
             <li>И инфо о странице надо чистить вручную</li>
             <li>Утилита не может зайти в "уведомления" (колокольчик) -> "показать все", оттуда тоже вручную</li>
-            <li>Кое-что останется все равно (напр. группы, добавленные в закладки со страницы группы - не ссылки, а именно группы)</li>
+            <li>Кое-что останется все равно (напр. группы, добавленные в закладки со страницы группы - не ссылки, а
+                именно группы)
+            </li>
             <li>Ну и конечно тащ м<b>о</b>йор сможет это все найти на странице супердоступа</li>
             <li>В целом: вконтакте работает довольно мутно, поэтому после всего обязательно пройдитесь вручную</li>
         </ul>
@@ -45,7 +44,8 @@
             <li>Нажимаешь на "доступ 1"</li>
             <li>Открывается окошко, все разрешаешь</li>
             <li>Окошко переходит на другую страницу <a href="./ss.png" target="_blank">вот такую</a></li>
-            <li>Нужно скопировать в буфер обмена ИМЕННО то что я выделил, <b>начиная И НЕ ВКЛЮЧАЯ знак "="</b>, <b>заканчивая И НЕ ВКЛЮЧАЯ знак "&"</b></li>
+            <li>Нужно скопировать в буфер обмена ИМЕННО то что я выделил, <b>начиная И НЕ ВКЛЮЧАЯ знак "="</b>, <b>заканчивая
+                И НЕ ВКЛЮЧАЯ знак "&"</b></li>
             <li>То что скопировалось надо вставить в поле "сохранить токен" и нажать кнопку</li>
             <li>Все, после этого можно шпарить</li>
             <li>Обновил страницу - получай токен заново</li>
@@ -73,15 +73,34 @@
         Получите токен сначала!
     </div>
     <div class="mt-3">
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeFromNewsComments(document.getElementById('indicator'))">Удалить данные из "новости" -> "комментарии"</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeFromAnswersAll(document.getElementById('indicator'))">Удалить данные из "ответы"</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeAllLikes(document.getElementById('indicator'))">Удалить все лайки (придется капчу вводить)</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeWall(document.getElementById('indicator'))">Удалить все посты со стены</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeVideos(document.getElementById('indicator'))">Удалить все видосы</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removePhotos(document.getElementById('indicator'))">Удалить все фото</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeNotes(document.getElementById('indicator'))">Удалить все заметки</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeFriends(document.getElementById('indicator'))">Удалить всех друзей!!</button>
-        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeMessages(document.getElementById('indicator'))">Удалить все диалоги!!</button>
+        <button class="btn d-inline-block mt-1 btn-dark"
+                onclick="removeFromNewsComments(document.getElementById('indicator'))">Удалить данные из "новости" ->
+            "комментарии"
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark"
+                onclick="removeFromAnswersAll(document.getElementById('indicator'))">Удалить данные из "ответы"
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeAllLikes(document.getElementById('indicator'))">
+            Удалить все лайки (придется капчу вводить)
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeWall(document.getElementById('indicator'))">
+            Удалить все посты со стены
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeVideos(document.getElementById('indicator'))">
+            Удалить все видосы
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removePhotos(document.getElementById('indicator'))">
+            Удалить все фото
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeNotes(document.getElementById('indicator'))">
+            Удалить все заметки
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeFriends(document.getElementById('indicator'))">
+            Удалить всех друзей!!
+        </button>
+        <button class="btn d-inline-block mt-1 btn-dark" onclick="removeMessages(document.getElementById('indicator'))">
+            Удалить все диалоги!!
+        </button>
     </div>
     <div class="mt-3 mb-3">
         <p class="lead">
