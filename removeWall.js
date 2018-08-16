@@ -17,7 +17,8 @@ async function removeWall(indicator) {
                 post_id: post.id
             }, undefined, undefined, 'big');
             postsRemoved++;
-            localWallInform('Удалено постов: ' + postsRemoved + (postsRemoved > 100 ? ' !!!Рекомендую перезапустить, а то бывает что посты перестают удаляться' : ''));
+            if (postsRemoved % 85 === 0) await helpers.wait(15000);
+            localWallInform('Удалено постов: ' + postsRemoved);
         }
         offset += posts.items.length;
     }
