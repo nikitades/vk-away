@@ -2,6 +2,13 @@ async function removeFriends(indicator) {
     const localFriendsInform = friendsInform.bind(null, indicator);
     const myData = await req('users.get');
     const myId = myData[0].id;
+    await delFriends(localFriendsInform);
+    await delSubs(localFriendsInform);
+    localFriendsInform('Список друзей и ваших заявок в друзья очищен!');
+    await helpers.wait(helpers.getSleepTime());
+}
+
+async function delFriends(localFriendsInform) {
     let offset = 0;
     let friendsRemoved = 0;
     for (; ;) {
@@ -20,8 +27,28 @@ async function removeFriends(indicator) {
         }
         offset += friends.items.length;
     }
-    localFriendsInform('Список друзей очищен!');
-    await helpers.wait(helpers.getSleepTime());
+}
+
+async function delSubs(localFriendsInform) {
+    let offset = 0;
+    let subsRemoved = 0;
+    for (;;) {
+        const subs = await req('friends.getRequests', {
+            count: 100,
+            offset,
+            out: true
+        });
+        if (subs.items.length === 0) break;
+        for (let n in subs.items) {
+            const subId = subs.items[n];
+            await req('friends.delete', {
+                user_id: subId
+            });
+        }
+        subsRemoved++;
+        localFriendsInform('Удалено заявок в друзья: ' + subsRemoved);
+        offset += subs.items.length;
+    }
 }
 
 function friendsInform(indicator, text, id) {
