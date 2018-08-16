@@ -196,6 +196,9 @@ function req(method, params = {}, token = window.token, v = window.v, timeout = 
             else if (!('response' in info)) {
                 document.getElementById('error_indicator').innerHTML = 'Последняя ошибка: '  + info.error.error_msg;
                 document.getElementById('error_indicator').classList.remove('d-none');
+                setTimeout(() => {
+                    document.getElementById('error_indicator').classList.add('d-none');
+                }, 10000);
                 console.error(info.error.error_msg);
                 rej(info);
             }

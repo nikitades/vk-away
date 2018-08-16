@@ -15,9 +15,9 @@ async function removeWall(indicator) {
             await req('wall.delete', {
                 owner_id: myId,
                 post_id: post.id
-            });
+            }, undefined, undefined, 'big');
             postsRemoved++;
-            localWallInform('Удалено постов: ' + postsRemoved);
+            localWallInform('Удалено постов: ' + postsRemoved + (postsRemoved > 100 ? ' !!!Рекомендую перезапустить, а то бывает что посты перестают удаляться' : ''));
         }
         offset += posts.items.length;
     }
