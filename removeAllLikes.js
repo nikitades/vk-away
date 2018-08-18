@@ -18,11 +18,11 @@ let localLikesInform;
 async function removeAllLikes(indicator) {
     localLikesInform = likesInform.bind(null, indicator);
     try {
-        await removePhotoLikes();
-        await removeVideoLikes();
-        await removePostLikes();
         await removeFavUsers();
         await removeFavLinks();
+        await removePostLikes();
+        await removeVideoLikes();
+        await removePhotoLikes();
         // собрать лайки на фото, видео, постах и удалить
         // удадить закладки людей и групп
     } catch (e) {
