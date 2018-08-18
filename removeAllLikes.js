@@ -20,9 +20,9 @@ async function removeAllLikes(indicator) {
     try {
         await removeFavUsers();
         await removeFavLinks();
-        await removePostLikes();
         await removeVideoLikes();
         await removePhotoLikes();
+        await removePostLikes();
         // собрать лайки на фото, видео, постах и удалить
         // удадить закладки людей и групп
     } catch (e) {
